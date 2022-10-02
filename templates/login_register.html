@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In / Register
+{% endblock %}
+
+{% block main %}
+	<div class="login-html">
+	    <h1>
+       	Conflict Club
+    	</h1>
+		<h5>
+		The first rule of Conflict Club is that you talk about Conflict Club!
+		<button onclick="explanation()" class="btn btn-dark">What is Conflict Club <i class="fa-solid fa-circle-question"></i></button>
+		<script>
+		function explanation() {
+			alert("How much can you know about yourself if you've never been in a conflict? Get the chance to yell at people and have them yell back at you! No hard feelings, just Conflict Club fun!");
+		}
+		</script>
+		</h5>
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+		<div class="login-form">
+			<form class="sign-in-htm" method= "POST" action="/login">
+				<div class="group">
+					<label for="user" class="label">Email</label>
+					<input id="user" name="email" type="text" class="input">
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" name= "password" type="password" class="input" data-type="password">
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Sign In">
+				</div>
+			</form>
+			<form class="sign-up-htm" method= "POST" action="/register" enctype="multipart/form-data">
+				<div class="group">
+					<label for="user" class="label">name</label>
+					<input id="user" name="name" type="text" class="input">
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" name="password" type="password" class="input" data-type="password">
+				</div>
+				<div class="group">
+					<label for="pass2" class="label">Repeat Password</label>
+					<input id="pass2" name= "repeat password" type="password" class="input" data-type="password">
+				</div>
+				<div class="group">
+					<label for="pass3" class="label">Email Address</label>
+					<input id="pass3" name= "email" type="text" class="input">
+				</div>
+				<div class="group">
+					<label for="pass4" class="label">Country</label>
+					<input id="pass4" name= "country" type="text" class="input">
+				</div>
+				<div class="group">
+					<label for="pass5" class="label">City</label>
+					<input id="pass5" name= "city" type="text" class="input">
+				<div class="group">
+					<label for="pass7" class="label">Avatar</label>
+					<input id="pass7" name= "file" type="file" class="input">
+				</div>
+				<div class="group">
+				<label for="pass8" class="label">Interests</label>
+				<form action="/action_page.php">
+					<input type="checkbox" id="interest1" name="interests[]" value="1">
+					<label for="interest1"> Politics</label><br>
+					<input type="checkbox" id="interest2" name="interests[]" value="2">
+					<label for="interest2"> Sports</label><br>
+					<input type="checkbox" id="interest3" name="interests[]" value="3">
+					<label for="interest3"> Food</label><br>
+					<input type="checkbox" id="interest4" name="interests[]" value="4">
+					<label for="interest4"> Religion</label><br>
+					<input type="checkbox" id="interest5" name="interests[]" value="5">
+					<label for="interest5"> Social issues</label><br>
+					<input type="checkbox" id="interest5" name="interests[]" value="6">
+					<label for="interest6"> Science</label><br>
+					<input type="checkbox" id="interest5" name="interests[]" value="7">
+					<label for="interest7"> Current affairs</label><br>
+					<input type="checkbox" id="interest5" name="interests[]" value="8">
+					<label for="interest8"> TV/Cinema</label><br>
+					<input type="checkbox" id="interest5" name="interests[]" value="9">
+					<label for="interest9"> Other</label><br><br>
+				</form>
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Sign Up">
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+{% endblock %}

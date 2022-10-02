@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main Page
+{% endblock %}
+
+{% block main %}
+    <div class='header'>
+    <div class='header-name'>
+   <p>
+       Welcome {{session['user_name']}}
+    </p>
+    <p>
+       First rule of Conflict Club is that you talk about Conflict Club
+    </p>
+    </div>
+    <div class='header-msg'>
+    <a href="/chat">
+        <i class="fa-solid fa-comments"></i>
+        <br>
+        Chat
+    </a>
+    <p style="font-size:small">Check here if you have matches!</pl>
+    </div>
+    </div>
+
+    <div class='content'>
+    <div class="card" style="width: 100%;">
+        {% if fighter!=None %}
+        <img src="../static/{{fighter.avatar}}" class="card-img-top" style="width:200px; height:200px;" alt="...">
+        {% endif %}
+        <div class="card-body">
+        {% if fighter==None %}
+        <h4 class="card-title">There are no available users</h4>
+        {% else %}
+        <h4 class="card-title"><b><u>Name:</u> {{fighter.name}}</b></h4>
+        <div class="card-text">
+            <p><u>Country, City:</u> {{fighter.country}}, {{fighter.city}}</p>
+            <br />
+            <p><b><u>Interests</u></b></p>
+            <ul>
+                {%for interest in interests%}
+                <li>{{interest.name}}</li>
+                {% endfor %}
+            </ul>
+            <div class="actions container">
+                <form action = "/no" method= "POST" class="float-start me-1">
+                    <input name = "fighterid" value= "{{fighter.id}}" style="display:none" />
+                    <button class="btn btn-danger" type= "submit"><i class="fa-solid fa-xmark"></i> No</button>
+                </form>
+                <form action = "/yes" method= "POST" class="float-start">
+                    <input name = "fighterid" value= "{{fighter.id}}" style="display:none"/>
+                    <button class="btn btn-success" type= "submit"><i class="fa-solid fa-check"></i> Yes</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+        </div>
+    </div>
+    </div>
+    <div class='footer'><a href="/logout"><h4>LOGOUT</h4></a></div>
+
+{% endblock %}

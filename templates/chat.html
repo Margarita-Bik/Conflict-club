@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Chat
+{% endblock %}
+
+{% block main %}
+    <div class='header'>
+    <div class='header-name'>
+   <p>
+       Welcome {{session['user_name']}}
+    </p>
+    <p>
+       First rule of Conflict Club is that you talk about Conflict Club
+    </p>
+    </div>
+    <div class='header-msg'>
+    <a href="/">
+        <i class="fa-solid fa-house-chimney"></i>
+        <br>
+        Home
+    </a>
+    </div>
+    </div>
+
+    <div class='content'>
+        <div class="w-25 h-100 float-start border border-dark bg-light overflow-scroll">
+            <ul class="list-group">
+                {% if users|length>0 %}
+                {% for user in users %}
+                <li class="list-group-item {{'active' if user.id|string==tuser|string else ''}}" aria-current="true"><a href="/msg/{{user.id}}"><img src="../static/{{'avatar.jpg' if not user.avatar else user.avatar}}" style="width:20px; height:20px;" alt="..."> {{user.name}}</a></li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+        <div class="w-75 h-100 float-start border border-dark bg-light">
+            <div class="border border-dark bg-light overflow-scroll" style="height:90%">
+                {% if messages|length>0 %}
+                {% for msg in messages %}
+                <div class="alert alert-{{'primary' if msg.user_from==session['user_id'] else 'secondary'}} text-{{'end' if msg.user_from==session['user_id'] else 'start'}}" role="alert">
+                    {{msg.text}} <br>
+                    <i>{{msg.created_at}}</i>
+                  </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            {% if tuser %}
+            <div class="border border-dark bg-light" style="height:10%">
+                <form method="POST" action="/msg/{{tuser}}" class="h-100">
+                    <textarea name="msg" placeholder="Type your message here..." class="float-start w-75 h-100"></textarea>
+                    <button class="btn btn-success float-start w-25 h-100"><i class="fa-solid fa-paper-plane"></i> Send</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class='footer'><a href="/logout"><h4>LOGOUT</h4></a></div>
+
+    <script>
+        setTimeout(function(){
+            window.location.reload(1);
+        }, 60000);
+    </script>
+
+{% endblock %}
